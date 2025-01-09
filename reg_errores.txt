@@ -1,0 +1,24 @@
+Error en la asignacion de base de datos 
+Tipo de error: UnboundLocalError  Fecha: 27/11/24 Hora: 19:48 
+
+
+No se encontro base de datos 
+Tipo de error: AttributeError  Fecha: 27/11/24 Hora: 19:48 
+
+
+Error en la asignacion de base de datos 
+Tipo de error: UnboundLocalError  Fecha: 27/11/24 Hora: 19:49 
+
+
+No se encontro base de datos 
+Tipo de error: AttributeError  Fecha: 27/11/24 Hora: 19:49 
+
+
+Error en la asignacion de base de datos 
+Tipo de error: UnboundLocalError  Fecha: 28/11/24 Hora: 08:33 
+
+
+No se encontro base de datos 
+Tipo de error: AttributeError  Fecha: 28/11/24 Hora: 08:33 
+
+
