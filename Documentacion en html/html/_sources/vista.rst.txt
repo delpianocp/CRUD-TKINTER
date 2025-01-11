@@ -1,0 +1,205 @@
+vista module
+============
+**En este modulo se encuentra la clase encargada de generar la vista mediante el modulo tkinter** 
+
+
+
+Modulos importados
+------------------
+
+El modulo posee 16 importaciones:
+
+.. code-block:: python
+
+   import tkinter
+   from tkinter import ttk
+   from tkinter import StringVar
+   from tkinter import Frame
+   from tkinter import Label
+   from tkinter import Entry
+   from tkinter import Button
+   from tkinter import Tk
+   from tkinter import messagebox
+   from tkcalendar import DateEntry
+   from datetime import datetime
+   import matplotlib.pyplot as plt
+   from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+   from validaciones import validacion_fecha, validacion_re_fase, datos_grafico
+   from modelo_ORM import BaseDatos, SelectDB
+   from tktimepicker import AnalogPicker, AnalogThemes, constants
+   
+Clase VentanaPP 
+---------------
+
+.. py:class:: VentanaPP()
+
+   clase encargada de renderizar los widget de tkinter.
+   
+
+**Metodos**
+	
+.. py:function:: def __init__(self, ventana)
+	
+   Contructor de clase, inicializa las variables necesarias para la interfaz grafica.
+
+   :Param: ventana.
+   :Type: ventana:[<class 'tkinter.Tk'>].
+   
+.. py:function:: cargar(self)
+	
+   Valida las variables a cargar, invoca a ``cargaDB()`` de la clase ``BaseDatos()`` con las variables como argumento.
+
+**Invoca a modulos externos.**
+   
+.. code-block:: python
+
+	  self.obj_db = BaseDatos() #objeto de la clase base de datos
+	  self.obj_db.cargaDB(self.sector.get(), float(self.fase.get()), self.fecha.get(), f"{self.hora}:{self.minuto}")
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+	  
+.. py:function:: eliminar(self)
+	
+   Recupera el id del elemento seleccionado en treeview, invoca a eliminarDB con el id como argumento.
+
+**Invoca a modulos externos.**
+   
+.. code-block:: python
+
+	  self.obj_db = BaseDatos() #objeto de la clase base de datos
+	  self.obj_db.eliminarDB(elem_id)
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: cargar_treeview(self)
+	
+   Carga treeview, invoca la coleccion DB a travez de un obj BaseDatos.
+
+**instancia un objeto de BaseDatos.**
+
+.. code-block:: python
+
+   listabd= self.obj_db.recuperarDB()
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: limpiar_treeview(self)
+	
+   Recupera y elimina los elementos en el widget treeview.
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: reset_var_carga(self)
+	
+   Setea variables a valores iniciales del frame carga.
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: busqueda_fecha(self)
+	
+   Recupera todos los registros coincidentes con fecha_buscar.
+
+Utiliza el objeto ``self.obj_db`` para invocar el metodo ``recuperarFechasDB()``
+
+.. code-block:: python
+
+   filas = self.obj_db.recuperarFechasDB(self.fecha_buscar.get())
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: busqueda_sector(self)
+	
+   Recupera todos los registros coincidentes con sector_buscar.
+
+Utiliza el objeto ``self.obj_db`` para invocar el metodo ``recuperarSectoresDB()``
+
+.. code-block:: python
+
+   filas = self.obj_db.recuperarSectoresDB(self.sector_buscar.get())
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: set_var_modificacion(self)
+	
+   Obtiene el elemento de treeview y setea los campos del frame modificar con el elemento correspondiente.
+
+.. note::
+   
+   Se declara global para que pueda ser utilizado por modificar().
+
+   .. code-block:: python
+
+      global elem_id
+	  
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+   
+.. py:method:: modificar(self)
+	
+   Valida y envia a base de datos las nuevas variables de entrada.
+
+.. tip::
+   
+   Invoca a metodo de BaseDatos para relizar la modificacion.
+
+   .. code-block:: python
+
+      self.obj_db.modificarDB(elem_id, self.nuevo_sector.get(), float(self.nueva_fase.get()), self.nueva_fecha.get(), f"{self.nueva_hora.get()}:{self.nuevo_minuto.get()}")
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: reset_var_modificacion(self)
+	
+   Setea variables a valores iniciales del frame modificar.
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+   
+.. py:method:: set_treview_modificacion(self, elem_id,sector_t, fase_t, fecha_t, hora_t)
+	
+   Limpia treeview y carga los valores del registro a modificar.
+
+   :Param: elem_id,sector_t, fase_t, fecha_t, hora_t.
+   :Type: elem_id[string],sector_t[string], fase_t[float], fecha_t[string], hora_t[string].
+   
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+   
+.. py:method:: cargar_grafico(self)
+	
+   Crea el area de grafico y sus propiedades.
+   Hace uso de los modulos matplotlib.
+
+Invoca a metodo de ``validaciones.datos_grafico()`` el cuale retorna 2 listas para definir eje x y eje y
+
+.. code-block:: python
+
+   axs.bar(datos_grafico(datadb)[1], datos_grafico(datadb)[0], color = 'c') 
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: get_tiempo(self)
+	
+   Genera un Toplevel con el widget reloj.
+   
+.. code-block:: python
+
+   self.ok_btn = Button(self.top, text="setear", command=lambda: self.set_tiempo(self.time_picker.time()))
+
+*----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: set_tiempo(self, time)
+	
+   Asigna la hora a las variables de instancia ``self.hora`` y ``self.minuto`` 
+         
+   :Param: time
+   :Type: elem_id[string],sector_t[string], fase_t[float], fecha_t[string], hora_t[string].
+
+   *----------------------------------------------------------------------------------------------------------------------------------------------------*
+
+.. py:method:: def cerrar(self)
+	
+   Cierra la aplicacion.
+         
+.. code-block:: python
+
+   if messagebox.askokcancel(message="¿Desea Salir de la aplicacion?", title="Confirmacion"):
+      self.ventana_principal.quit()
+      self.ventana_principal.destroy()

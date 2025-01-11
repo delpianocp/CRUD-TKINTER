@@ -1,0 +1,20 @@
+validaciones module
+===================
+
+**Contiene 3 funciones dedicadas a validar los parametros** 
+
+Modulos importados
+------------------
+
+El modulo posee 2 importaciones:
+
+.. code-block:: python
+
+   from datetime import timedelta, datetime
+   import re
+
+
+.. automodule:: validaciones
+   :members:
+   :undoc-members:
+   :show-inheritance:

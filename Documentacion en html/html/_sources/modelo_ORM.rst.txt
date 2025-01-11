@@ -1,0 +1,264 @@
+modelo\_ORM module
+==================
+**En este modulo se encuentra definido el modelo ORM y sus operaciones, posee 2 opciones de conexion mysql o sqlite** 
+
+Modulos importados
+------------------
+
+El modulo posee 5 importaciones:
+
+.. code-block:: python
+
+   from peewee import Model
+   from peewee import MySQLDatabase, SqliteDatabase
+   from peewee import CharField, FloatField
+   import sys 
+   from reg_errores import RegError
+
+Invoca los siguentes objetos y metodos para crear conexion con base de datos:
+
+.. code-block:: python
+	
+   database=SelectDB()
+   db=database.selectMydb()
+
+Clase SelectDB 
+--------------
+
+.. py:class:: SelectDB()
+
+   Selecciona la base de datos a utilizar.
+
+**Variables de clase**
+
+.. code-block:: python
+
+	base_datos_seleccion= "sqlite"
+
+.. note::
+
+   Se define la base de datos a utilizar "mysql" o "sqlite".
+   Si se define la variable con otro string, se genera un error capturado por metodos definidos en el modulo ``reg_errores``.
+
+**Metodos**
+	
+.. py:function:: selectMydb(self)
+	
+   Retorna la instruccion de la base de datos a utilizar definida en la variable de clase ``base_datos_seleccion= "sqlite"``
+
+      :Return: db
+
+      :Type: db:<class 'peewee.SqliteDatabase'>	
+
+.. code-block:: python
+	 
+   #Donde db podra tomar alguno de los sig valores:
+	db = MySQLDatabase(host="localhost", user="root", passwd="", database="mediciones")
+	db = SqliteDatabase("registroMed.db")
+
+
+**Archivo fuente**
+
+.. code-block:: python
+
+   class SelectDB():
+      
+      base_datos_seleccion= "sqlite" 
+      
+      def __init__(self):
+         pass
+      
+      def selectMydb(self):
+                  
+         try:
+               if self.base_datos_seleccion == "mysql":
+                  
+                  db = MySQLDatabase(host="localhost", user="root", passwd="", database="mediciones")
+                  
+                  message="Se conecto con mysql"
+               elif self.base_datos_seleccion == "sqlite":
+                  db = SqliteDatabase("registroMed.db")
+                  message="Se conecto con sqlite"
+               return db
+         except UnboundLocalError:
+               mess_reg="Error en la asignacion de base de datos"
+               print(mess_reg)       
+               message=f"Ingrese correctamente el nombre de la base de datos, se ingreso '{self.base_datos_seleccion}'\nIngrese 'mysql' o 'sqlite' en la linea 8 de modelo_ORM.py"
+               reg = RegError()
+               reg.registrar_error("UnboundLocalError", mess_reg)
+         finally:
+               print(message)
+
+Clase BaseModel 
+---------------
+
+.. py:class:: BaseModel(Model)
+
+   Clase que hereda el modulo Model de peewee, genera la estructura de asignacion de BD.
+
+
+**Variables de clase**
+
+.. code-block:: python
+
+	class Meta:
+		database = db
+
+.. note::
+
+   Definida database el modulo peewee tiene asignada la base de datos.
+
+**Archivo fuente**
+
+.. code-block:: python
+   
+   class BaseModel(Model):
+    class Meta:
+        database = db
+
+Clase Mediciones
+----------------
+
+.. py:class:: Mediciones(BaseModel)
+
+   Se define y genera la estructura de datos del ORM con peewee, hereda BaseModel.
+
+**Variables de clase**
+
+   ``sector = CharField()``
+   ``fase = FloatField()``
+   ``fecha = CharField()``
+   ``hora = CharField()``
+
+**Archivo fuente**
+
+.. code-block:: python
+   
+   class Mediciones(BaseModel):
+      sector = CharField()
+      fase = FloatField()
+      fecha = CharField()
+      hora = CharField()
+
+Clase BaseDatos 
+---------------
+
+.. py:class:: BaseDatos()
+
+   Se define operaciones sobre la base de datos seleccionada.
+
+**Metodos**
+	
+.. py:function:: cargaDB(self, sector, fase, fecha, hora)
+	
+   Inserta parametros en el modelo Mediciones.
+
+   :Param: sector, fase, fecha, hora:
+   :Type: sector:[string], fase:[float], fecha:[string], hora:[string] 
+
+.. py:function:: recuperarDB(self)		
+
+   Recupera toda la tabla desde el modelo Mediciones.
+
+   :Return: db
+   :Type Return: db:[<class 'peewee.ModelSelect'>]
+   
+.. py:function:: recuperarFechasDB(self, fecha)
+   
+   Retorna lista de cada registro de la tabla que contenga fecha.
+   
+   :Param: fecha
+   :Type: fecha:[string]
+   :Return: lista_fechas: Lista de elemetos q coinciden con fecha.
+   :Type Return: lista_fechas:[list]
+   
+.. py:function:: recuperarSectoresDB(self, sector)
+
+   Retorna lista de cada registro de la tabla que contenga sector..
+
+   :Param: sector
+   :Type: sector:[string]
+   :Return: lista_sector: Lista de elemetos q coinciden con sector.
+   :Type Return: lista_sector:[list]
+   
+.. py:function:: eliminarDB(self, elem_id)
+
+   Elimina registro segun id.
+
+   :Param: elem_id
+   :Type: elem_id:[int]
+   
+.. py:function:: modificarDB(self, elem_id, nuevo_sector, nueva_medicion, nueva_fecha, nueva_hora)
+
+   Modifica con nuevos valores el registro con el id pasado como parametro.
+
+   :Param: nuevo_sector, nueva_fase, nueva_fecha, nueva_hora:
+   :Type: nuevo_sector:[string], nueva_fase:[float], nueva_fecha:[string], nueva_hora:[string]
+
+**Archivo fuente**
+
+.. code-block:: python
+   
+   class BaseDatos():    
+      
+      def __init__(self,):
+         pass
+         
+      def cargaDB(self, sector, fase, fecha, hora):
+         
+         mediciones=Mediciones()
+         mediciones.sector= sector
+         mediciones.fase= fase
+         mediciones.fecha = fecha
+         mediciones.hora= hora
+         mediciones.save()
+
+      def recuperarDB(self):
+         datadb = Mediciones.select()
+         return datadb
+
+      def recuperarFechasDB(self, fecha):
+         coleccion= Mediciones.select()
+         lista_fechas = [] 
+         
+         for f in coleccion:
+               if str(f.fecha) == str(fecha):
+                  lista_fechas.append(f)
+            
+         return lista_fechas #Retorna lista de objetos q coinciden 
+
+      def recuperarSectoresDB(self, sector):
+         coleccion= Mediciones.select()
+         lista_sectores = [] 
+         for s in coleccion:
+               if str(s.sector) == str(sector):
+                  lista_sectores.append(s)
+               
+         return lista_sectores #Retorna lista de objetos q coinciden  
+
+      def eliminarDB(self, elem_id):
+         reg_elim= Mediciones.get(Mediciones.id == elem_id)
+         reg_elim.delete_instance()
+
+      def modificarDB(self, elem_id, nuevo_sector, nueva_medicion, nueva_fecha, nueva_hora):
+         actualizar=Mediciones.update(sector=nuevo_sector, fase = nueva_medicion, fecha = nueva_fecha, hora=nueva_hora).where(Mediciones.id == elem_id)
+         actualizar.execute()
+         
+      
+   
+
+		
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+

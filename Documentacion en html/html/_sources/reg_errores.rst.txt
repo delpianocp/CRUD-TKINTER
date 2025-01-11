@@ -1,0 +1,80 @@
+reg\_errores module
+===================
+**En este modulo se encuentra la clase encargada de registrar en un .txt los errores surgidos durante ejecucion.** 
+
+Modulos importados
+------------------
+
+El modulo posee 2 importaciones:
+
+.. code-block:: python
+
+	import os
+	import datetime
+
+
+Clase RegError 
+--------------
+
+.. py:class:: RegError(Exception)
+
+	Guarda registro de errores.
+
+
+**Variables de clase**
+
+.. code-block:: python
+
+	BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
+	ruta = os.path.join(BASE_DIR, "reg_errores.txt")
+
+
+
+**Metodos**
+	
+.. py:function:: registrar_error(self, error, mensaje)
+	
+	Registra en un archivo el error y mensaje recibidos.
+
+	:Param: error: tipo de error detectado,  mensaje: Texto referido atipo de error.
+
+	:Type: error:[string], mensaje:[string] 	
+
+.. note::
+
+   La clase ``RegError`` hereda atributos de la clase ``Exception``.
+
+**Archivo fuente**
+
+.. code-block:: python
+
+  class RegError(Exception):
+
+    BASE_DIR = os.path.dirname((os.path.abspath(__file__)))
+    ruta = os.path.join(BASE_DIR, "reg_errores.txt")
+
+    def __init__(self):
+        pass
+
+
+    def registrar_error(self, error, mensaje):
+        
+        log = open(self.ruta, "a")
+        print(f"{mensaje} \nTipo de error: {error}  Fecha: {datetime.datetime.now()}\n\n" , file=log)	
+		
+
+
+		
+
+	
+	
+	
+
+
+
+
+
+
+
+
+

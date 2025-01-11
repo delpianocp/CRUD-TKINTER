@@ -1,0 +1,58 @@
+controlador module
+==================
+
+**En este modulo se encuentra la clase encargada lanzar el modulo vista, y el loop para que corra tkinter.**
+
+Modulos importados
+------------------
+
+El modulo posee 2 importaciones:
+
+.. code-block:: python
+
+	from tkinter import Tk
+	from vista import VentanaPP
+
+.. note::
+ 
+   Dentro del modulo se genera el loop para correr tkinter.
+ 
+ .. code-block:: python
+			
+		if __name__=="__main__":
+			ventana = Tk()
+			aplicacion = Controler(ventana)
+			ventana.mainloop()
+	
+Clase Controller 
+----------------
+
+.. py:class:: Controller()
+
+	Inicializa la vista.
+
+**Metodos**
+	
+.. py:function:: __init__(self, ventana)
+
+	Recibe ventana de tkinter.
+	
+	:Param: ventana: ventana principal de tkinter
+
+	:Type: ventana:[<class 'tkinter.Tk'>]
+	
+**Archivo fuente** 
+
+.. code-block:: python
+  
+  class Controller():
+    def __init__(self, ventana):
+        self.ventana = ventana
+        self.obj_ventana = VentanaPP(ventana)
+
+	if __name__=="__main__":
+		ventana = Tk()
+		aplicacion = Controler(ventana)
+		ventana.mainloop()
+			
+		

@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vista module &mdash; MiProyecto 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="validaciones module" href="validaciones.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelo_ORM.html">modelo_ORM module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reg_errores.html">reg_errores module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validaciones.html">validaciones module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vista module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modulos-importados">Modulos importados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-ventanapp">Clase VentanaPP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#VentanaPP"><code class="docutils literal notranslate"><span class="pre">VentanaPP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cargar"><code class="docutils literal notranslate"><span class="pre">cargar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eliminar"><code class="docutils literal notranslate"><span class="pre">eliminar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cargar_treeview"><code class="docutils literal notranslate"><span class="pre">cargar_treeview()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limpiar_treeview"><code class="docutils literal notranslate"><span class="pre">limpiar_treeview()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reset_var_carga"><code class="docutils literal notranslate"><span class="pre">reset_var_carga()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#busqueda_fecha"><code class="docutils literal notranslate"><span class="pre">busqueda_fecha()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#busqueda_sector"><code class="docutils literal notranslate"><span class="pre">busqueda_sector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set_var_modificacion"><code class="docutils literal notranslate"><span class="pre">set_var_modificacion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modificar"><code class="docutils literal notranslate"><span class="pre">modificar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reset_var_modificacion"><code class="docutils literal notranslate"><span class="pre">reset_var_modificacion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set_treview_modificacion"><code class="docutils literal notranslate"><span class="pre">set_treview_modificacion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cargar_grafico"><code class="docutils literal notranslate"><span class="pre">cargar_grafico()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get_tiempo"><code class="docutils literal notranslate"><span class="pre">get_tiempo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set_tiempo"><code class="docutils literal notranslate"><span class="pre">set_tiempo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">vista module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/vista.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vista-module">
+<h1>vista module<a class="headerlink" href="#vista-module" title="Link to this heading"></a></h1>
+<p><strong>En este modulo se encuentra la clase encargada de generar la vista mediante el modulo tkinter</strong></p>
+<section id="modulos-importados">
+<h2>Modulos importados<a class="headerlink" href="#modulos-importados" title="Link to this heading"></a></h2>
+<p>El modulo posee 16 importaciones:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">StringVar</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Label</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Entry</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">from</span> <span class="nn">tkcalendar</span> <span class="kn">import</span> <span class="n">DateEntry</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_tkagg</span> <span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span>
+<span class="kn">from</span> <span class="nn">validaciones</span> <span class="kn">import</span> <span class="n">validacion_fecha</span><span class="p">,</span> <span class="n">validacion_re_fase</span><span class="p">,</span> <span class="n">datos_grafico</span>
+<span class="kn">from</span> <span class="nn">modelo_ORM</span> <span class="kn">import</span> <span class="n">BaseDatos</span><span class="p">,</span> <span class="n">SelectDB</span>
+<span class="kn">from</span> <span class="nn">tktimepicker</span> <span class="kn">import</span> <span class="n">AnalogPicker</span><span class="p">,</span> <span class="n">AnalogThemes</span><span class="p">,</span> <span class="n">constants</span>
+</pre></div>
+</div>
+</section>
+<section id="clase-ventanapp">
+<h2>Clase VentanaPP<a class="headerlink" href="#clase-ventanapp" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="VentanaPP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VentanaPP</span></span><a class="headerlink" href="#VentanaPP" title="Link to this definition"></a></dt>
+<dd><p>clase encargada de renderizar los widget de tkinter.</p>
+</dd></dl>
+
+<p><strong>Metodos</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">def</span> <span class="pre">__init__(self,</span> <span class="pre">ventana)</span></span></dt>
+<dd><p>Contructor de clase, inicializa las variables necesarias para la interfaz grafica.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ventana.</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ventana:[&lt;class ‘tkinter.Tk’&gt;].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cargar">
+<span class="sig-name descname"><span class="pre">cargar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cargar" title="Link to this definition"></a></dt>
+<dd><p>Valida las variables a cargar, invoca a <code class="docutils literal notranslate"><span class="pre">cargaDB()</span></code> de la clase <code class="docutils literal notranslate"><span class="pre">BaseDatos()</span></code> con las variables como argumento.</p>
+</dd></dl>
+
+<p><strong>Invoca a modulos externos.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span> <span class="o">=</span> <span class="n">BaseDatos</span><span class="p">()</span> <span class="c1">#objeto de la clase base de datos</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">cargaDB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sector</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fase</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hora</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">minuto</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="eliminar">
+<span class="sig-name descname"><span class="pre">eliminar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eliminar" title="Link to this definition"></a></dt>
+<dd><p>Recupera el id del elemento seleccionado en treeview, invoca a eliminarDB con el id como argumento.</p>
+</dd></dl>
+
+<p><strong>Invoca a modulos externos.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span> <span class="o">=</span> <span class="n">BaseDatos</span><span class="p">()</span> <span class="c1">#objeto de la clase base de datos</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">eliminarDB</span><span class="p">(</span><span class="n">elem_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cargar_treeview">
+<span class="sig-name descname"><span class="pre">cargar_treeview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cargar_treeview" title="Link to this definition"></a></dt>
+<dd><p>Carga treeview, invoca la coleccion DB a travez de un obj BaseDatos.</p>
+</dd></dl>
+
+<p><strong>instancia un objeto de BaseDatos.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">listabd</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">recuperarDB</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="limpiar_treeview">
+<span class="sig-name descname"><span class="pre">limpiar_treeview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#limpiar_treeview" title="Link to this definition"></a></dt>
+<dd><p>Recupera y elimina los elementos en el widget treeview.</p>
+</dd></dl>
+
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="reset_var_carga">
+<span class="sig-name descname"><span class="pre">reset_var_carga</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reset_var_carga" title="Link to this definition"></a></dt>
+<dd><p>Setea variables a valores iniciales del frame carga.</p>
+</dd></dl>
+
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="busqueda_fecha">
+<span class="sig-name descname"><span class="pre">busqueda_fecha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#busqueda_fecha" title="Link to this definition"></a></dt>
+<dd><p>Recupera todos los registros coincidentes con fecha_buscar.</p>
+</dd></dl>
+
+<p>Utiliza el objeto <code class="docutils literal notranslate"><span class="pre">self.obj_db</span></code> para invocar el metodo <code class="docutils literal notranslate"><span class="pre">recuperarFechasDB()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">recuperarFechasDB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fecha_buscar</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="busqueda_sector">
+<span class="sig-name descname"><span class="pre">busqueda_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#busqueda_sector" title="Link to this definition"></a></dt>
+<dd><p>Recupera todos los registros coincidentes con sector_buscar.</p>
+</dd></dl>
+
+<p>Utiliza el objeto <code class="docutils literal notranslate"><span class="pre">self.obj_db</span></code> para invocar el metodo <code class="docutils literal notranslate"><span class="pre">recuperarSectoresDB()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">recuperarSectoresDB</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sector_buscar</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="set_var_modificacion">
+<span class="sig-name descname"><span class="pre">set_var_modificacion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#set_var_modificacion" title="Link to this definition"></a></dt>
+<dd><p>Obtiene el elemento de treeview y setea los campos del frame modificar con el elemento correspondiente.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se declara global para que pueda ser utilizado por modificar().</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">global</span> <span class="n">elem_id</span>
+</pre></div>
+</div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modificar">
+<span class="sig-name descname"><span class="pre">modificar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modificar" title="Link to this definition"></a></dt>
+<dd><p>Valida y envia a base de datos las nuevas variables de entrada.</p>
+</dd></dl>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Invoca a metodo de BaseDatos para relizar la modificacion.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">obj_db</span><span class="o">.</span><span class="n">modificarDB</span><span class="p">(</span><span class="n">elem_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_sector</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nueva_fase</span><span class="o">.</span><span class="n">get</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">nueva_fecha</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nueva_hora</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nuevo_minuto</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="reset_var_modificacion">
+<span class="sig-name descname"><span class="pre">reset_var_modificacion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reset_var_modificacion" title="Link to this definition"></a></dt>
+<dd><p>Setea variables a valores iniciales del frame modificar.</p>
+</dd></dl>
+
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="set_treview_modificacion">
+<span class="sig-name descname"><span class="pre">set_treview_modificacion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sector_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fase_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fecha_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hora_t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#set_treview_modificacion" title="Link to this definition"></a></dt>
+<dd><p>Limpia treeview y carga los valores del registro a modificar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>elem_id,sector_t, fase_t, fecha_t, hora_t.</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>elem_id[string],sector_t[string], fase_t[float], fecha_t[string], hora_t[string].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cargar_grafico">
+<span class="sig-name descname"><span class="pre">cargar_grafico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cargar_grafico" title="Link to this definition"></a></dt>
+<dd><p>Crea el area de grafico y sus propiedades.
+Hace uso de los modulos matplotlib.</p>
+</dd></dl>
+
+<p>Invoca a metodo de <code class="docutils literal notranslate"><span class="pre">validaciones.datos_grafico()</span></code> el cuale retorna 2 listas para definir eje x y eje y</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">axs</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">datos_grafico</span><span class="p">(</span><span class="n">datadb</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">datos_grafico</span><span class="p">(</span><span class="n">datadb</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="get_tiempo">
+<span class="sig-name descname"><span class="pre">get_tiempo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_tiempo" title="Link to this definition"></a></dt>
+<dd><p>Genera un Toplevel con el widget reloj.</p>
+</dd></dl>
+
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">ok_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;setear&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_tiempo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_picker</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p><em>—————————————————————————————————————————————————-</em></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="set_tiempo">
+<span class="sig-name descname"><span class="pre">set_tiempo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#set_tiempo" title="Link to this definition"></a></dt>
+<dd><p>Asigna la hora a las variables de instancia <code class="docutils literal notranslate"><span class="pre">self.hora</span></code> y <code class="docutils literal notranslate"><span class="pre">self.minuto</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>time</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>elem_id[string],sector_t[string], fase_t[float], fecha_t[string], hora_t[string].</p>
+</dd>
+</dl>
+<p><em>—————————————————————————————————————————————————-</em></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">def</span> <span class="pre">cerrar(self)</span></span></dt>
+<dd><p>Cierra la aplicacion.</p>
+</dd></dl>
+
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askokcancel</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;¿Desea Salir de la aplicacion?&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Confirmacion&quot;</span><span class="p">):</span>
+   <span class="bp">self</span><span class="o">.</span><span class="n">ventana_principal</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+   <span class="bp">self</span><span class="o">.</span><span class="n">ventana_principal</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="validaciones.html" class="btn btn-neutral float-left" title="validaciones module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Paolo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo_ORM module &mdash; MiProyecto 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="reg_errores module" href="reg_errores.html" />
+    <link rel="prev" title="controlador module" href="controlador.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controlador.html">controlador module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">modelo_ORM module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modulos-importados">Modulos importados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-selectdb">Clase SelectDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SelectDB"><code class="docutils literal notranslate"><span class="pre">SelectDB</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selectMydb"><code class="docutils literal notranslate"><span class="pre">selectMydb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-basemodel">Clase BaseModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#BaseModel"><code class="docutils literal notranslate"><span class="pre">BaseModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-mediciones">Clase Mediciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Mediciones"><code class="docutils literal notranslate"><span class="pre">Mediciones</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clase-basedatos">Clase BaseDatos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#BaseDatos"><code class="docutils literal notranslate"><span class="pre">BaseDatos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cargaDB"><code class="docutils literal notranslate"><span class="pre">cargaDB()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recuperarDB"><code class="docutils literal notranslate"><span class="pre">recuperarDB()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recuperarFechasDB"><code class="docutils literal notranslate"><span class="pre">recuperarFechasDB()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recuperarSectoresDB"><code class="docutils literal notranslate"><span class="pre">recuperarSectoresDB()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eliminarDB"><code class="docutils literal notranslate"><span class="pre">eliminarDB()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modificarDB"><code class="docutils literal notranslate"><span class="pre">modificarDB()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reg_errores.html">reg_errores module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validaciones.html">validaciones module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">modelo_ORM module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modelo_ORM.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelo-orm-module">
+<h1>modelo_ORM module<a class="headerlink" href="#modelo-orm-module" title="Link to this heading"></a></h1>
+<p><strong>En este modulo se encuentra definido el modelo ORM y sus operaciones, posee 2 opciones de conexion mysql o sqlite</strong></p>
+<section id="modulos-importados">
+<h2>Modulos importados<a class="headerlink" href="#modulos-importados" title="Link to this heading"></a></h2>
+<p>El modulo posee 5 importaciones:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">peewee</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">peewee</span> <span class="kn">import</span> <span class="n">MySQLDatabase</span><span class="p">,</span> <span class="n">SqliteDatabase</span>
+<span class="kn">from</span> <span class="nn">peewee</span> <span class="kn">import</span> <span class="n">CharField</span><span class="p">,</span> <span class="n">FloatField</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">reg_errores</span> <span class="kn">import</span> <span class="n">RegError</span>
+</pre></div>
+</div>
+<p>Invoca los siguentes objetos y metodos para crear conexion con base de datos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">database</span><span class="o">=</span><span class="n">SelectDB</span><span class="p">()</span>
+<span class="n">db</span><span class="o">=</span><span class="n">database</span><span class="o">.</span><span class="n">selectMydb</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="clase-selectdb">
+<h2>Clase SelectDB<a class="headerlink" href="#clase-selectdb" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SelectDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SelectDB</span></span><a class="headerlink" href="#SelectDB" title="Link to this definition"></a></dt>
+<dd><p>Selecciona la base de datos a utilizar.</p>
+</dd></dl>
+
+<p><strong>Variables de clase</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_datos_seleccion</span><span class="o">=</span> <span class="s2">&quot;sqlite&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Se define la base de datos a utilizar “mysql” o “sqlite”.
+Si se define la variable con otro string, se genera un error capturado por metodos definidos en el modulo <code class="docutils literal notranslate"><span class="pre">reg_errores</span></code>.</p>
+</div>
+<p><strong>Metodos</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="selectMydb">
+<span class="sig-name descname"><span class="pre">selectMydb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#selectMydb" title="Link to this definition"></a></dt>
+<dd><p>Retorna la instruccion de la base de datos a utilizar definida en la variable de clase <code class="docutils literal notranslate"><span class="pre">base_datos_seleccion=</span> <span class="pre">&quot;sqlite&quot;</span></code></p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>db</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>db:&lt;class ‘peewee.SqliteDatabase’&gt;</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Donde db podra tomar alguno de los sig valores:</span>
+     <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLDatabase</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s2">&quot;mediciones&quot;</span><span class="p">)</span>
+     <span class="n">db</span> <span class="o">=</span> <span class="n">SqliteDatabase</span><span class="p">(</span><span class="s2">&quot;registroMed.db&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Archivo fuente</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SelectDB</span><span class="p">():</span>
+
+   <span class="n">base_datos_seleccion</span><span class="o">=</span> <span class="s2">&quot;sqlite&quot;</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">pass</span>
+
+   <span class="k">def</span> <span class="nf">selectMydb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_datos_seleccion</span> <span class="o">==</span> <span class="s2">&quot;mysql&quot;</span><span class="p">:</span>
+
+               <span class="n">db</span> <span class="o">=</span> <span class="n">MySQLDatabase</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s2">&quot;mediciones&quot;</span><span class="p">)</span>
+
+               <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Se conecto con mysql&quot;</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_datos_seleccion</span> <span class="o">==</span> <span class="s2">&quot;sqlite&quot;</span><span class="p">:</span>
+               <span class="n">db</span> <span class="o">=</span> <span class="n">SqliteDatabase</span><span class="p">(</span><span class="s2">&quot;registroMed.db&quot;</span><span class="p">)</span>
+               <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Se conecto con sqlite&quot;</span>
+            <span class="k">return</span> <span class="n">db</span>
+      <span class="k">except</span> <span class="ne">UnboundLocalError</span><span class="p">:</span>
+            <span class="n">mess_reg</span><span class="o">=</span><span class="s2">&quot;Error en la asignacion de base de datos&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">mess_reg</span><span class="p">)</span>
+            <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Ingrese correctamente el nombre de la base de datos, se ingreso &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_datos_seleccion</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">Ingrese &#39;mysql&#39; o &#39;sqlite&#39; en la linea 8 de modelo_ORM.py&quot;</span>
+            <span class="n">reg</span> <span class="o">=</span> <span class="n">RegError</span><span class="p">()</span>
+            <span class="n">reg</span><span class="o">.</span><span class="n">registrar_error</span><span class="p">(</span><span class="s2">&quot;UnboundLocalError&quot;</span><span class="p">,</span> <span class="n">mess_reg</span><span class="p">)</span>
+      <span class="k">finally</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="clase-basemodel">
+<h2>Clase BaseModel<a class="headerlink" href="#clase-basemodel" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="BaseModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BaseModel" title="Link to this definition"></a></dt>
+<dd><p>Clase que hereda el modulo Model de peewee, genera la estructura de asignacion de BD.</p>
+</dd></dl>
+
+<p><strong>Variables de clase</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="n">db</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Definida database el modulo peewee tiene asignada la base de datos.</p>
+</div>
+<p><strong>Archivo fuente</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+ <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+     <span class="n">database</span> <span class="o">=</span> <span class="n">db</span>
+</pre></div>
+</div>
+</section>
+<section id="clase-mediciones">
+<h2>Clase Mediciones<a class="headerlink" href="#clase-mediciones" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Mediciones">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Mediciones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">BaseModel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Mediciones" title="Link to this definition"></a></dt>
+<dd><p>Se define y genera la estructura de datos del ORM con peewee, hereda BaseModel.</p>
+</dd></dl>
+
+<p><strong>Variables de clase</strong></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">sector</span> <span class="pre">=</span> <span class="pre">CharField()</span></code>
+<code class="docutils literal notranslate"><span class="pre">fase</span> <span class="pre">=</span> <span class="pre">FloatField()</span></code>
+<code class="docutils literal notranslate"><span class="pre">fecha</span> <span class="pre">=</span> <span class="pre">CharField()</span></code>
+<code class="docutils literal notranslate"><span class="pre">hora</span> <span class="pre">=</span> <span class="pre">CharField()</span></code></p>
+</div></blockquote>
+<p><strong>Archivo fuente</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mediciones</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+   <span class="n">sector</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+   <span class="n">fase</span> <span class="o">=</span> <span class="n">FloatField</span><span class="p">()</span>
+   <span class="n">fecha</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+   <span class="n">hora</span> <span class="o">=</span> <span class="n">CharField</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="clase-basedatos">
+<h2>Clase BaseDatos<a class="headerlink" href="#clase-basedatos" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="BaseDatos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseDatos</span></span><a class="headerlink" href="#BaseDatos" title="Link to this definition"></a></dt>
+<dd><p>Se define operaciones sobre la base de datos seleccionada.</p>
+</dd></dl>
+
+<p><strong>Metodos</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="cargaDB">
+<span class="sig-name descname"><span class="pre">cargaDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fecha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hora</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cargaDB" title="Link to this definition"></a></dt>
+<dd><p>Inserta parametros en el modelo Mediciones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sector, fase, fecha, hora:</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>sector:[string], fase:[float], fecha:[string], hora:[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recuperarDB">
+<span class="sig-name descname"><span class="pre">recuperarDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recuperarDB" title="Link to this definition"></a></dt>
+<dd><p>Recupera toda la tabla desde el modelo Mediciones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>db</p>
+</dd>
+<dt class="field-even">Type Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>db:[&lt;class ‘peewee.ModelSelect’&gt;]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recuperarFechasDB">
+<span class="sig-name descname"><span class="pre">recuperarFechasDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fecha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recuperarFechasDB" title="Link to this definition"></a></dt>
+<dd><p>Retorna lista de cada registro de la tabla que contenga fecha.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>fecha</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>fecha:[string]</p>
+</dd>
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>lista_fechas: Lista de elemetos q coinciden con fecha.</p>
+</dd>
+<dt class="field-even">Type Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>lista_fechas:[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="recuperarSectoresDB">
+<span class="sig-name descname"><span class="pre">recuperarSectoresDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recuperarSectoresDB" title="Link to this definition"></a></dt>
+<dd><p>Retorna lista de cada registro de la tabla que contenga sector..</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sector</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>sector:[string]</p>
+</dd>
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>lista_sector: Lista de elemetos q coinciden con sector.</p>
+</dd>
+<dt class="field-even">Type Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>lista_sector:[list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eliminarDB">
+<span class="sig-name descname"><span class="pre">eliminarDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eliminarDB" title="Link to this definition"></a></dt>
+<dd><p>Elimina registro segun id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>elem_id</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>elem_id:[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="modificarDB">
+<span class="sig-name descname"><span class="pre">modificarDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elem_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nuevo_sector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nueva_medicion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nueva_fecha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nueva_hora</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modificarDB" title="Link to this definition"></a></dt>
+<dd><p>Modifica con nuevos valores el registro con el id pasado como parametro.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nuevo_sector, nueva_fase, nueva_fecha, nueva_hora:</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>nuevo_sector:[string], nueva_fase:[float], nueva_fecha:[string], nueva_hora:[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>Archivo fuente</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseDatos</span><span class="p">():</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+      <span class="k">pass</span>
+
+   <span class="k">def</span> <span class="nf">cargaDB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">fase</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">hora</span><span class="p">):</span>
+
+      <span class="n">mediciones</span><span class="o">=</span><span class="n">Mediciones</span><span class="p">()</span>
+      <span class="n">mediciones</span><span class="o">.</span><span class="n">sector</span><span class="o">=</span> <span class="n">sector</span>
+      <span class="n">mediciones</span><span class="o">.</span><span class="n">fase</span><span class="o">=</span> <span class="n">fase</span>
+      <span class="n">mediciones</span><span class="o">.</span><span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span>
+      <span class="n">mediciones</span><span class="o">.</span><span class="n">hora</span><span class="o">=</span> <span class="n">hora</span>
+      <span class="n">mediciones</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+   <span class="k">def</span> <span class="nf">recuperarDB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">datadb</span> <span class="o">=</span> <span class="n">Mediciones</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">datadb</span>
+
+   <span class="k">def</span> <span class="nf">recuperarFechasDB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+      <span class="n">coleccion</span><span class="o">=</span> <span class="n">Mediciones</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>
+      <span class="n">lista_fechas</span> <span class="o">=</span> <span class="p">[]</span>
+
+      <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">coleccion</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">fecha</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+               <span class="n">lista_fechas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">lista_fechas</span> <span class="c1">#Retorna lista de objetos q coinciden</span>
+
+   <span class="k">def</span> <span class="nf">recuperarSectoresDB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector</span><span class="p">):</span>
+      <span class="n">coleccion</span><span class="o">=</span> <span class="n">Mediciones</span><span class="o">.</span><span class="n">select</span><span class="p">()</span>
+      <span class="n">lista_sectores</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">coleccion</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sector</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">sector</span><span class="p">):</span>
+               <span class="n">lista_sectores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">lista_sectores</span> <span class="c1">#Retorna lista de objetos q coinciden</span>
+
+   <span class="k">def</span> <span class="nf">eliminarDB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_id</span><span class="p">):</span>
+      <span class="n">reg_elim</span><span class="o">=</span> <span class="n">Mediciones</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Mediciones</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">elem_id</span><span class="p">)</span>
+      <span class="n">reg_elim</span><span class="o">.</span><span class="n">delete_instance</span><span class="p">()</span>
+
+   <span class="k">def</span> <span class="nf">modificarDB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_id</span><span class="p">,</span> <span class="n">nuevo_sector</span><span class="p">,</span> <span class="n">nueva_medicion</span><span class="p">,</span> <span class="n">nueva_fecha</span><span class="p">,</span> <span class="n">nueva_hora</span><span class="p">):</span>
+      <span class="n">actualizar</span><span class="o">=</span><span class="n">Mediciones</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sector</span><span class="o">=</span><span class="n">nuevo_sector</span><span class="p">,</span> <span class="n">fase</span> <span class="o">=</span> <span class="n">nueva_medicion</span><span class="p">,</span> <span class="n">fecha</span> <span class="o">=</span> <span class="n">nueva_fecha</span><span class="p">,</span> <span class="n">hora</span><span class="o">=</span><span class="n">nueva_hora</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Mediciones</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">elem_id</span><span class="p">)</span>
+      <span class="n">actualizar</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controlador.html" class="btn btn-neutral float-left" title="controlador module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reg_errores.html" class="btn btn-neutral float-right" title="reg_errores module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Paolo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
