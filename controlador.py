@@ -12,3 +12,4 @@ if __name__=="__main__":
     ventana = Tk()
     aplicacion = Controler(ventana)
     ventana.mainloop()
+    

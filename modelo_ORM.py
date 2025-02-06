@@ -1,9 +1,11 @@
+import sys 
 from peewee import Model
 from peewee import MySQLDatabase, SqliteDatabase
 from peewee import CharField, FloatField
-import sys 
-from reg_errores import RegError
-from funcion_deco import registro_log
+from log.log_actividad import LogReg
+from decorador.funcion_deco import registro_log
+from observador.observador import SujetoBaseDatos
+
 
 class SelectDB():
 #Selecciona la base de datos a utilizar - "mysql" o "sqlite"    
@@ -18,7 +20,8 @@ class SelectDB():
         
         try:
             if self.base_datos_seleccion == "mysql":
-                db = MySQLDatabase(host="localhost", user="root", passwd="", database="mediciones")
+                
+                db = MySQLDatabase(host="localhofst", user="root", passwd="", database="mediciones")
                 message="Se conecto con mysql"
                 
             elif self.base_datos_seleccion == "sqlite":
@@ -29,7 +32,7 @@ class SelectDB():
             mess_reg="Error en la asignacion de base de datos"
             print(mess_reg)       
             message=f"Ingrese correctamente el nombre de la base de datos, se ingreso '{self.base_datos_seleccion}'\nIngrese 'mysql' o 'sqlite' en la linea 8 de modelo_ORM.py"
-            reg = RegError()
+            reg = LogReg()
             reg.registrar_error("UnboundLocalError", mess_reg)
         finally:
             print(message)
@@ -51,18 +54,20 @@ try:
     db.connect()
     db.create_tables([Mediciones])
 
-except AttributeError:
+except:
     mess_reg="No se encontro base de datos"
     print("Se interrumpe la aplicacion")
-    reg = RegError()
+    reg = LogReg()
     reg.registrar_error("AttributeError", mess_reg)
     sys.exit(0)
 
-class BaseDatos():    
+
+class BaseDatos(SujetoBaseDatos):    
 #Se define operaciones sobre la base de datos seleccionada.    
     
-    def __init__(self,):
+    def __init__(self):
         pass
+    
     @registro_log    
     def cargaDB(self, sector, fase, fecha, hora):
     #Inserta parametros en el modelo Mediciones.    
@@ -74,6 +79,9 @@ class BaseDatos():
         mediciones.hora= hora
         mediciones.save()
 
+        self.notificar()                #patron observer
+    
+        
     def recuperarDB(self):
     #Recupera toda la tabla desde el modelo Mediciones.
         
@@ -109,7 +117,8 @@ class BaseDatos():
     
         reg_elim= Mediciones.get(Mediciones.id == elem_id)
         reg_elim.delete_instance()
-
+        self.notificar()
+        
     @registro_log 
     def modificarDB(self, elem_id, nuevo_sector, nueva_medicion, nueva_fecha, nueva_hora):
     #Modifica con nuevos valores el registro con el id pasado como parametro.
@@ -117,4 +126,6 @@ class BaseDatos():
         actualizar=Mediciones.update(sector=nuevo_sector, fase = nueva_medicion, fecha = nueva_fecha, hora=nueva_hora).where(Mediciones.id == elem_id)
         actualizar.execute()
         
-   
+
+
+

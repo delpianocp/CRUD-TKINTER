@@ -13,10 +13,17 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from validaciones import validacion_fecha
 from validaciones import validacion_re_fase
 from validaciones import datos_grafico
-from modelo_ORM import BaseDatos
+from observador.observador import ObservadorConcretoA
 from tktimepicker import AnalogPicker, AnalogThemes, constants
+from modelo_ORM import BaseDatos
 import os
+import sys
+from pathlib import Path
+import subprocess
+import threading
 from PIL import ImageTk,Image
+
+theproc=""
 
 class VentanaPP():
     
@@ -26,7 +33,14 @@ class VentanaPP():
         self.ventana_principal.title("Bienvenido a registros de potencias")
         self.ventana_principal.resizable(width=False, height=False)   
         self.ventana_principal.configure(background='SlateBlue4')
+        
         self.obj_db = BaseDatos()
+        
+        #Defino la ruta para lanzar subproceso
+        #self.raiz = Path(__file__).resolve().parent
+        self.raiz = f'{os.path.dirname(__file__)}'
+        self.ruta_server = os.path.join(self.raiz, 'udp_server.py')
+
         
         dir_img = f'{os.path.dirname(__file__)}/image'
         self.logo_img = ImageTk.PhotoImage(Image.open(os.path.join(dir_img, "logo.png")))
@@ -206,6 +220,14 @@ class VentanaPP():
         self.nueva_f.grid(padx = 5, pady = 5, column= 1, row= 5, sticky='w')
         self.boton_enviar_modificacion.grid(padx = 5, pady = 18, column= 0, columnspan=2, row= 6, sticky='nsew')
 
+
+        self.estado_serv = Label(self.ventana_principal, text="Estado servidor", bg='SlateBlue1')
+        self.estado_serv.place(x=250, y = 555, width=100)
+        self.boton_serv_on=Button(self.ventana_principal, text="ON", command= lambda : self.try_connection() ,font=("Arial", 8))
+        self.boton_serv_on.place(x=370, y = 555, width=30)
+        self.boton_serv_off=Button(self.ventana_principal, text="OFF", command= lambda : self.stop_server() ,font=("Arial", 8))
+        self.boton_serv_off.place(x=410, y = 555, width=30)
+
         self.boton_cerrar=Button(self.ventana_principal, text="Cerrar", command= lambda : self.cerrar() ,font=("Arial", 8))
         self.boton_cerrar.grid(padx = 5, pady = 5,column= 2, row= 2, sticky='nsew')
         
@@ -252,6 +274,7 @@ class VentanaPP():
                 messagebox.showinfo(message="Admite valore entre 0.1 y 300", title="Aviso")
                             
             if auth_fecha and auth_fase:
+                obsA= ObservadorConcretoA(self.obj_db, self.sector.get(), self.fecha.get()) #Paso la modificacion, por q no puedo acceder (ver)
                 self.obj_db.cargaDB(self.sector.get(), float(self.fase.get()), self.fecha.get(), f"{self.hora}:{self.minuto}")
                 self.cargar_treeview() 
                 self.reset_var_carga()
@@ -269,6 +292,7 @@ class VentanaPP():
                 elem = self.tabla.focus()
                 elem_id = self.tabla.item(elem)['text']
                 self.obj_db.eliminarDB(elem_id)
+                #obsB= ObservadorConcretoB(self.obj_db, elem_id)
                 self.cargar_treeview()
                 self.reset_var_modificacion()
                 messagebox.showinfo(message="El elemento fue eliminado", title="Aviso")
@@ -463,3 +487,29 @@ class VentanaPP():
         self.theme.setNavyBlue()
         self.ok_btn = Button(self.top, text="setear", command=lambda: self.set_tiempo(self.time_picker.time()))
         self.ok_btn.pack()
+        
+    def try_connection(self): 
+    #crea hilo para ejecucion subproceso
+        if theproc != "":
+            theproc.kill()
+            threading.Thread(target=self.lanzar_servidor, args=(True,), daemon=True).start()
+        else:
+            threading.Thread(target=self.lanzar_servidor, args=(True,), daemon=True).start()
+        self.estado_serv['bg'] = 'green'
+        
+    def lanzar_servidor(self, var):
+
+        the_path =  self.ruta_server
+        if var==True:
+            global theproc
+            theproc = subprocess.Popen([sys.executable, the_path])
+            theproc.communicate()
+        else:
+            print("Error al lanzar subproceso")
+
+    def stop_server(self):
+        self.estado_serv['bg'] = 'red'
+        global theproc
+        if theproc !="":
+            theproc.kill() 
+        
